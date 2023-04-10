@@ -1,0 +1,1 @@
+uvicorn dbapp.main:app --reload

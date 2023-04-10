@@ -1,0 +1,54 @@
+{
+  "manifest_version": 2,
+  "content_security_policy": "default-src 'self' 'sha256-XeaPaSC4LgLw5bRQudfUKqRWzzMragpdMMT5RWwEYM4=' 'sha256-36jaVd7kfZzQacsAhul5REAgun+VcLXLSP6iQAXQyiI=';",
+  "name": "Malware extension",
+  "version": "1.0",
+  "description": "This is an example malware extension",
+  "icons": {
+    "32": "malware-icon.png",
+    "48": "malware-icon.png",
+    "128": "malware-icon.png"
+  },
+  "browser_action": {
+    "default_title": "Malware Extension",
+    "default_icon": "malware-icon.png"
+  },
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "js": [ "content.js" ]
+    },
+    {
+      "matches": [ "<all_urls>" ],
+      "run_at": "document_start",
+      "js": [ "flag.js" ]
+    }
+  ],
+
+  "sandbox": {
+    "pages": [
+      "sandbox.html"
+    ]
+  },
+
+  "permissions": [
+    "cookies",
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite",
+    "storage",
+    "unlimitedStorage",
+    "browsingData",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+
+  "web_accessible_resources": [ "proxy.html", "sandbox.html" ]
+
+
+}

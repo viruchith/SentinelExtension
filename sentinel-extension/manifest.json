@@ -1,0 +1,54 @@
+{
+  "manifest_version": 2,
+  "content_security_policy": "default-src 'self' 'sha256-XeaPaSC4LgLw5bRQudfUKqRWzzMragpdMMT5RWwEYM4=' 'sha256-36jaVd7kfZzQacsAhul5REAgun+VcLXLSP6iQAXQyiI=';",
+  "name": "Sentinel Extension",
+  "version": "1.0",
+  "description": "This is a Web extension for building secure web applications. ",
+  "icons": {
+    "32": "shield-png.png",
+    "48": "shield-png.png",
+    "128": "shield-png.png"
+  },
+  "browser_action": {
+    "default_title": "SentinelExtension",
+    "default_icon": "shield-png.png"
+  },
+  "background": {
+    "scripts": [ "background.js" ]  
+  },
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "js": [ "content.js","hashes.js" ]
+    },
+    {
+      "matches": [ "<all_urls>" ],
+      "run_at": "document_start",
+      "js": [ "flag.js" ]
+    }
+  ],
+
+  "sandbox": {
+    "pages": [
+      "sandbox.html"
+    ]
+  },
+
+  "permissions": [
+    "cookies",
+    "tabs",
+    "activeTab",
+    "clipboardRead",
+    "clipboardWrite",
+    "storage",
+    "unlimitedStorage",
+    "browsingData",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+
+  "web_accessible_resources": [ "proxy.html", "sandbox.html","hashes.js" ]
+
+
+}
